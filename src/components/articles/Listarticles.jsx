@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import {fetcharticlesPagination} from "../../services/articleservice"
+import {fetcharticlesPagination,deletearticle} from "../../services/articleservice"
 
 import "./article.css"
 import Affichearticle from './Affichearticle';
 import Pagination from './Pagination';
 
 import Headerarticle from './Headerarticle';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import Insertarticle from './Insertarticle';
+
 const Listarticles = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,13 +17,19 @@ const Listarticles = () => {
   const [articles, setArticles] = useState([]);
   const [limit, setLimit]=useState(5)
   const [searchText, setSearchText] = useState('');
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+ 
+
   const fetchProducts = async (page,limit,searchText) => {
     try {
       const res = await fetcharticlesPagination(page,limit,searchText)
      
       setArticles(res.data.products);
       setTotalPages(res.data.totalPages);
-      console.log(res.data.products)
+   
     } catch (error) {
       console.log(error);
     }
@@ -52,17 +62,53 @@ const Listarticles = () => {
     setSearchText(event.target.value);
     setCurrentPage(1);  
   };
+
+  const handleDeletearticle = async (id,ref) => {
+    
+      confirmAlert({
+        title: "Confirm delete...",
+        message: " supprimer l' article: " + ref,
+        buttons: [
+        {
+        label: 'Oui',
+        onClick: () => deletearticle(id)
+        .then(res=>fetchProducts(currentPage,limit,''))
+        
+        .catch(error=>console.log(error))
+        },
+        {
+        label: 'Non',
+        }
+        ]
+        });
+ 
+      }
   return (
     <div>
+      <div className="table-container-header">
+  <button className="new" onClick={handleShow}>
+    
+      <i className="fa-solid fa-plus-square"></i> Nouveau
+    
+  </button>
       <Headerarticle searchText={searchText}
       handleSearchChange={handleSearchChange}/>
-      <Affichearticle articles={articles} handleLimitChange={handleLimitChange} limit={limit}/>
+      <Affichearticle articles={articles} handleLimitChange={handleLimitChange} limit={limit} handleDeletearticle={handleDeletearticle}/>
+      </div>
       <Pagination handlePrevPage={handlePrevPage}
       handleNextPage={handleNextPage}
       handlePageChange={handlePageChange}
       totalPages={totalPages}
       currentPage ={currentPage }
       />
+
+{show && <Insertarticle
+          show={show}
+          handleClose={handleClose}
+          fetchProducts={fetchProducts}
+          limit={limit}
+          />  }
+
     </div>
  
   )

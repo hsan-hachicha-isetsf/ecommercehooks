@@ -11,6 +11,7 @@ const Menu = () => {
       <Nav.Link as={Link} to="/categories">Catégories</Nav.Link>
       <Nav.Link as={Link} to="/scategories">Sous Catégories</Nav.Link>
       <Nav.Link as={Link} to="/articles">Liste des Articles</Nav.Link>
+      <Nav.Link as={Link} to="/articlescard">articles card</Nav.Link>
       
     </Nav>
     </Container>

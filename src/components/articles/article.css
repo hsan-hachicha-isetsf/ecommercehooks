@@ -53,6 +53,8 @@
    border-radius: 8px; /* Coins arrondis pour le conteneur */
    margin: 20px 0; /* Marge autour du conteneur */
    padding: 0 10px; /* Espacement intérieur */
+   
+   
  }
  table {
    width: 100%; /* Largeur flexible du tableau */
@@ -83,10 +85,16 @@ tbody td {
 text-align: center; /* Alignement central du texte */
 padding: 10px; /* Rembourrage pour le contenu des cellules */
 border: 1px solid #ddd; /* Bordure fine grise */
+
+  
+  
+
+
 }
 /* Style des lignes alternées */
 tr:nth-child(odd) {
 background-color: #f8f9fa; /* Couleur de fond gris clair */
+
 }
 
 /* Style des cellules responsives */
@@ -121,6 +129,7 @@ letter-spacing: 1px;
 position: relative;
 overflow: hidden;
 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
 }
 
 
@@ -146,6 +155,7 @@ button.edit {
   text-transform: uppercase;
     font-size: 0.875em; /* Ajustez la taille du texte */
   font-weight: bold; /* Optionnel : pour rendre le texte en gras */
+  
 }
 
 button.delete {
@@ -195,6 +205,7 @@ button.delete:active {
 margin-bottom: 15px; /* Espace entre le bouton et le tableau */
 display: flex;
 justify-content: flex-end; /* Aligne le bouton à droite */
+
 }
 
 
@@ -309,8 +320,10 @@ padding: 5px;
 
 /* Style for the container holding the add button and search input */
 .table-container-header {
-display: flex;
+
+  
 justify-content: space-between;
 align-items: center;
 margin-bottom: 20px;
+
 }

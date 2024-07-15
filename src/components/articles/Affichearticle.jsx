@@ -1,6 +1,7 @@
 import React from 'react'
 import "./article.css"
-const Affichearticle = ({articles,handleLimitChange,limit}) => {
+const Affichearticle = ({articles,handleLimitChange,limit,handleDeletearticle}) => {
+    
   return (
     <div className="table-container">
       
@@ -28,15 +29,15 @@ const Affichearticle = ({articles,handleLimitChange,limit}) => {
                 <td>{art.marque}</td>
                 <td>{art.qtestock}</td>
                 <td>{art.prix}</td>
-                <td><button className='edit'>
-                <i className="fa-solid fa-pen-to-square"></i>Update</button></td>
+                <td><center><button className='edit'>
+                <i className="fa-solid fa-pen-to-square"></i>Update</button></center></td>
     
-                <td><button className="delete" >
+                <td><center><button className="delete" onClick={()=>handleDeletearticle(art._id,art.reference)} >
             
-                <i class="fa-solid fa-trash"></i>
+                <i className="fa-solid fa-trash"></i>
                 
                 
-                 Delete</button></td>
+                 Delete</button></center></td>
     
             </tr>
             )}
@@ -44,7 +45,7 @@ const Affichearticle = ({articles,handleLimitChange,limit}) => {
     </tbody>
     <tfoot>
     <tr>
-                <td colspan="8">
+                <td colSpan="8">
                 <div className="limit-selector-container">
                  
                 <label>
